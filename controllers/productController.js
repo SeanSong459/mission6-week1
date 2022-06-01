@@ -1,13 +1,18 @@
 const asyncHandler = require("express-async-handler");
 
 const Product = require("../models/productModel.js");
+const quickSort = require("../quickSort.js");
 
 // @desc   Get Products
 // @route  GET  /api/products
 //@access Private
 const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find();
-  res.status(200).json(products);
+  // const sortedProducts = quickSort(products);
+  const sortedProducts = quickSort(products);
+  console.log(products);
+  console.log(sortedProducts);
+  res.status(200).json(sortedProducts);
 });
 // @desc   Set Products
 // @route  POST  /api/products
